@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.os.Handler;
+import android.text.SpannableString;
+import android.text.style.RelativeSizeSpan;
 import android.util.DisplayMetrics;
 import android.widget.TextView;
 
@@ -32,12 +34,16 @@ public class HiitChronographActivity extends AppCompatActivity {
             @Override
             public void run() {
                 Calendar calendar = Calendar.getInstance();
-                SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm:ss");
+                SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm:ss.S");
                 String currentTime = timeFormat.format(calendar.getTime());
 
-                clockView.setText(currentTime);
+                SpannableString spannableString = new SpannableString(currentTime);
 
-                handler.postDelayed(this, 1000);
+                spannableString.setSpan(new RelativeSizeSpan(0.5f), currentTime.length()-2, currentTime.length(), 0);
+
+                clockView.setText(spannableString);
+
+                handler.postDelayed(this, 100);
 
             }
         });
