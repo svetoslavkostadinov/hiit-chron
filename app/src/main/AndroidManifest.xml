@@ -12,6 +12,9 @@
         android:theme="@style/Theme.HIITChron"
         tools:targetApi="31">
         <activity
+            android:name=".HiitChronographActivity"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
