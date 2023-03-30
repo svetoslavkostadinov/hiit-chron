@@ -4,16 +4,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".HiitChronographActivity">
 
-    <Button
-        android:id="@+id/hiit_chron_btn"
+    <TextView
+        android:id="@+id/clockView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:text="Go To HIIT Clock"/>
+        android:textColor="@color/black"
+        android:textSize="60sp"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
