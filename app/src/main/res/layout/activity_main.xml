@@ -14,6 +14,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:text="Go To HIIT Clock"/>
+        android:text="@string/set_workout"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

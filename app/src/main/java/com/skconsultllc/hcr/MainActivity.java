@@ -18,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
         goToChronBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, HiitChronographActivity.class);
+                Intent intent = new Intent(MainActivity.this, WorkoutSetupActivity.class);
                 startActivity(intent);
             }
         });

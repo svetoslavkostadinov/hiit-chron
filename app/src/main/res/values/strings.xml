@@ -1,4 +1,10 @@
 <resources>
     <string name="app_name">HIIT Chron</string>
     <string name="the_hiit_chronograph_text">The HIIT Chronograph</string>
+    <string name="add_new_workout">Add New Workout</string>
+    <string name="ACTIVE">ACTIVE</string>
+    <string name="set_workout">Set Workout</string>
+    <string name="select_minutes">min</string>
+    <string name="select_seconds">sec</string>
+    <string name="go">GO</string>
 </resources>

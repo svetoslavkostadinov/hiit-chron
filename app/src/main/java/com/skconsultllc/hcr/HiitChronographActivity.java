@@ -24,7 +24,7 @@ public class HiitChronographActivity extends AppCompatActivity {
         getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
         int screenWidth = displayMetrics.widthPixels;
 
-        float textSize = screenWidth * 0.08f;
+        float textSize = screenWidth * 0.04f;
 
         clockView.setTextSize(textSize);
 
