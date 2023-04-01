@@ -23,6 +23,10 @@ public class HiitAction {
         return duration;
     }
 
+    public String getDurationStringValue() {
+        return String.valueOf(duration);
+    }
+
     public void setDuration(int duration) {
         this.duration = duration;
     }

@@ -5,11 +5,13 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.NumberPicker;
 import android.widget.RadioButton;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.skconsultllc.hcr.adapters.WorkoutStageListAdapter;
 import com.skconsultllc.hcr.models.HiitAction;
 import com.skconsultllc.hcr.models.HiitActionBuilder;
 import com.skconsultllc.hcr.models.HiitActionType;
@@ -20,6 +22,7 @@ import java.util.ArrayList;
 public class WorkoutSetupActivity extends AppCompatActivity {
 
     private ArrayList<HiitAction> workoutRoutine;
+    private WorkoutStageListAdapter workoutStageListAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,8 +72,6 @@ public class WorkoutSetupActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-
-
                 int minutes = minutesPicker.getValue();
                 int seconds = secondsPicker.getValue();
 
@@ -93,11 +94,18 @@ public class WorkoutSetupActivity extends AppCompatActivity {
 
             }
         });
+
+        ListView workoutAgendaList = findViewById(R.id.listWorkoutStages);
+        this.workoutStageListAdapter = new WorkoutStageListAdapter(this, workoutRoutine);
+        workoutAgendaList.setAdapter(workoutStageListAdapter);
+
     }
 
     private void insertToWorkoutRoutineList(HiitAction workout) {
         int indexToInsert = this.workoutRoutine.size() - 1 ;
         this.workoutRoutine.add(indexToInsert, workout);
+        this.workoutStageListAdapter.notifyDataSetChanged();
+        Log.i("TAG", "New item was added");
     }
 
 
