@@ -72,7 +72,9 @@ public class WorkoutSetupActivity extends AppCompatActivity {
         minutesPicker.setValue(minutesPicker.getMinValue());
         NumberPicker secondsPicker = findViewById(R.id.secondsPicker);
         secondsPicker.setMinValue(0);
-        secondsPicker.setMaxValue(59);
+        secondsPicker.setMaxValue(3);
+        secondsPicker.setDisplayedValues(new String[]{"0", "15", "30", "45"});
+        secondsPicker.setWrapSelectorWheel(true);
         secondsPicker.setValue(secondsPicker.getMinValue());
 
         Button startWorkoutButton = findViewById(R.id.startWorkoutButton);
@@ -90,7 +92,7 @@ public class WorkoutSetupActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 int minutes = minutesPicker.getValue();
-                int seconds = secondsPicker.getValue();
+                int seconds = getSecondsValue(secondsPicker.getValue());
 
                 int duration = minutes * 60 + seconds;
 
@@ -107,6 +109,8 @@ public class WorkoutSetupActivity extends AppCompatActivity {
                                         .build()
                 );
 
+                toggleWorkoutRelaxRadioGroup(radioGroup);
+
                 Log.i("INFO", "The add button has been clicked");
 
             }
@@ -116,6 +120,28 @@ public class WorkoutSetupActivity extends AppCompatActivity {
         this.workoutStageListAdapter = new WorkoutStageListAdapter(this, workoutRoutine);
         workoutAgendaList.setAdapter(workoutStageListAdapter);
 
+    }
+
+    private int getSecondsValue(int value) {
+        switch(value) {
+            case 1:
+                return 15;
+            case 2:
+                return 30;
+            case 3:
+                return 45;
+            default:
+                return 0;
+        }
+    }
+
+    private void toggleWorkoutRelaxRadioGroup(RadioGroup radioGroup) {
+        int checkedRadioButton = radioGroup.getCheckedRadioButtonId();
+        if(checkedRadioButton == R.id.radioWorkout) {
+            radioGroup.check(R.id.radioRelax);
+        } else {
+            radioGroup.check(R.id.radioWorkout);
+        }
     }
 
     private void insertToWorkoutRoutineList(HiitAction workout) {
@@ -140,4 +166,6 @@ public class WorkoutSetupActivity extends AppCompatActivity {
         }
 
     }
+
+
 }

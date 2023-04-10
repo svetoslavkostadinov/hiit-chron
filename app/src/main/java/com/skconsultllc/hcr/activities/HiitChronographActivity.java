@@ -3,6 +3,7 @@ package com.skconsultllc.hcr.activities;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.SpannableString;
@@ -25,7 +26,12 @@ public class HiitChronographActivity extends AppCompatActivity {
         setContentView(R.layout.activity_hiit_chronograph);
         TextView clockView = findViewById(R.id.clockView);
         Intent intent = getIntent();
-        ArrayList<HiitAction> workoutRoutineList = (ArrayList<HiitAction>) intent.getSerializableExtra("workoutRoutineList");
+        ArrayList<HiitAction> workoutRoutineList;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            workoutRoutineList = intent.getParcelableArrayListExtra("workoutRoutineList", HiitAction.class);
+        } else {
+            workoutRoutineList = (ArrayList<HiitAction>) intent.getSerializableExtra("workoutRoutineList");
+        }
         DisplayMetrics displayMetrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
         int screenWidth = displayMetrics.widthPixels;
