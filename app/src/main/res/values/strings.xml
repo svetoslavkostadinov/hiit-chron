@@ -10,4 +10,6 @@
     <string name="duration_placeholder_text">Duration</string>
     <string name="type_placeholder_text">Type</string>
     <string name="workout_stage_icon">workout stage icon</string>
+    <string name="secs_postfix">\" secs\"</string>
+    <string name="save_workout_set">Save Workout Set</string>
 </resources>

@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.NumberPicker;
 import android.widget.RadioButton;
+import android.widget.RadioGroup;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -62,7 +63,9 @@ public class WorkoutSetupActivity extends AppCompatActivity {
         );
 
         Button addNewWorkoutButton = findViewById(R.id.addNewWorkoutStageButton);
+        RadioGroup radioGroup = findViewById(R.id.radioGroup);
         RadioButton relaxRadioButton = findViewById(R.id.radioRelax);
+        radioGroup.check(R.id.radioWorkout);
         NumberPicker minutesPicker = findViewById(R.id.minutesPicker);
         minutesPicker.setMinValue(0);
         minutesPicker.setMaxValue(59);
@@ -104,7 +107,7 @@ public class WorkoutSetupActivity extends AppCompatActivity {
                                         .build()
                 );
 
-                Log.i("TAG", "The add button has been clicked");
+                Log.i("INFO", "The add button has been clicked");
 
             }
         });

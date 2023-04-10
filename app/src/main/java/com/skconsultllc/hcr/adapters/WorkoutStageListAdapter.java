@@ -1,5 +1,7 @@
 package com.skconsultllc.hcr.adapters;
 
+import static android.provider.Settings.System.getString;
+
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;

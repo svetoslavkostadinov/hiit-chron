@@ -24,7 +24,7 @@ public class HiitAction {
     }
 
     public String getDurationStringValue() {
-        return String.valueOf(duration);
+        return String.valueOf(duration) + " secs";
     }
 
     public void setDuration(int duration) {
