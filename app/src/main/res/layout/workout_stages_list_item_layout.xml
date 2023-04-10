@@ -7,30 +7,29 @@
 
     <ImageView
         android:id="@+id/workoutTypeIcon"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        app:srcCompat="@mipmap/ic_launcher_round"
+        android:layout_gravity="center_vertical"
+        android:contentDescription="@string/workout_stage_icon"/>
+    <TextView
+        android:id="@+id/workoutTypeTextView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/type_placeholder_text"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:layout_gravity="center_vertical"
+        android:layout_weight="@integer/material_motion_duration_long_1"
+        android:paddingHorizontal="10dp"/>
+
+    <TextView
+        android:id="@+id/workoutDurationTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/ic_launcher_foreground" />
+        android:text="@string/duration_placeholder_text"
+        android:textSize="14sp"
+        android:layout_gravity="center_vertical"
+        android:paddingHorizontal="10dp"/>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-
-        <TextView
-            android:id="@+id/workoutTypeTextView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Type"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:layout_gravity="center_vertical"/>
-
-        <TextView
-            android:id="@+id/workoutDurationTextView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="67"
-            android:textSize="14sp"
-            android:layout_gravity="center_vertical"/>
-    </LinearLayout>
 </LinearLayout>

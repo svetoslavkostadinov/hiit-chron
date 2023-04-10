@@ -1,7 +1,8 @@
-package com.skconsultllc.hcr;
+package com.skconsultllc.hcr.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.SpannableString;
@@ -9,7 +10,11 @@ import android.text.style.RelativeSizeSpan;
 import android.util.DisplayMetrics;
 import android.widget.TextView;
 
+import com.skconsultllc.hcr.R;
+import com.skconsultllc.hcr.models.HiitAction;
+
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 
 public class HiitChronographActivity extends AppCompatActivity {
@@ -19,7 +24,8 @@ public class HiitChronographActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hiit_chronograph);
         TextView clockView = findViewById(R.id.clockView);
-
+        Intent intent = getIntent();
+        ArrayList<HiitAction> workoutRoutineList = (ArrayList<HiitAction>) intent.getSerializableExtra("workoutRoutineList");
         DisplayMetrics displayMetrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
         int screenWidth = displayMetrics.widthPixels;

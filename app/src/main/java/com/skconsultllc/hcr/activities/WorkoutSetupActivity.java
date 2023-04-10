@@ -1,6 +1,7 @@
-package com.skconsultllc.hcr;
+package com.skconsultllc.hcr.activities;
 
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -9,8 +10,10 @@ import android.widget.ListView;
 import android.widget.NumberPicker;
 import android.widget.RadioButton;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.skconsultllc.hcr.R;
 import com.skconsultllc.hcr.adapters.WorkoutStageListAdapter;
 import com.skconsultllc.hcr.models.HiitAction;
 import com.skconsultllc.hcr.models.HiitActionBuilder;
@@ -24,10 +27,20 @@ public class WorkoutSetupActivity extends AppCompatActivity {
     private ArrayList<HiitAction> workoutRoutine;
     private WorkoutStageListAdapter workoutStageListAdapter;
 
+    private boolean isPortrait;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_workout_setup);
+
+        isPortrait = true;
+        setContentView(R.layout.activity_workout_setup_portrait);
+
+        int orientation = getResources().getConfiguration().orientation;
+        if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            isPortrait = false;
+            setContentView(R.layout.activity_workout_setup_landscape);
+        }
 
         this.workoutRoutine = new ArrayList<>();
 
@@ -63,7 +76,8 @@ public class WorkoutSetupActivity extends AppCompatActivity {
         startWorkoutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent( WorkoutSetupActivity.this, HiitChronographActivity.class);
+                Intent intent = new Intent(WorkoutSetupActivity.this, HiitChronographActivity.class);
+                intent.putExtra("workoutRoutineList", workoutRoutine);
                 startActivity(intent);
             }
         });
@@ -102,12 +116,25 @@ public class WorkoutSetupActivity extends AppCompatActivity {
     }
 
     private void insertToWorkoutRoutineList(HiitAction workout) {
-        int indexToInsert = this.workoutRoutine.size() - 1 ;
+        int indexToInsert = this.workoutRoutine.size() - 1;
         this.workoutRoutine.add(indexToInsert, workout);
         this.workoutStageListAdapter.notifyDataSetChanged();
         Log.i("TAG", "New item was added");
     }
 
+    @Override
+    public void onConfigurationChanged(@NonNull Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
 
+        int orientation = newConfig.orientation;
 
+        if (orientation == Configuration.ORIENTATION_LANDSCAPE && isPortrait) {
+            isPortrait = false;
+            setContentView(R.layout.activity_workout_setup_landscape);
+        } else if (orientation == Configuration.ORIENTATION_PORTRAIT && !isPortrait) {
+            isPortrait = true;
+            setContentView(R.layout.activity_workout_setup_portrait);
+        }
+
+    }
 }

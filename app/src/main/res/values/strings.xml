@@ -7,4 +7,7 @@
     <string name="select_minutes">min</string>
     <string name="select_seconds">sec</string>
     <string name="go">GO</string>
+    <string name="duration_placeholder_text">Duration</string>
+    <string name="type_placeholder_text">Type</string>
+    <string name="workout_stage_icon">workout stage icon</string>
 </resources>
