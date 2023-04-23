@@ -3,6 +3,7 @@ package com.skconsultllc.hcr.activities;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -26,6 +27,8 @@ import java.util.ArrayList;
 public class WorkoutSetupActivity extends AppCompatActivity {
 
     private ArrayList<HiitAction> workoutRoutine;
+
+    private Bundle bundle;
     private WorkoutStageListAdapter workoutStageListAdapter;
 
     private boolean isPortrait;
@@ -42,6 +45,9 @@ public class WorkoutSetupActivity extends AppCompatActivity {
             isPortrait = false;
             setContentView(R.layout.activity_workout_setup_landscape);
         }
+
+        String[] secondsPickerValues = new String[]{"0", "5", "10", "15", "20", "25",
+                "30", "35", "40", "45", "50", "55"};
 
         this.workoutRoutine = new ArrayList<>();
 
@@ -68,12 +74,12 @@ public class WorkoutSetupActivity extends AppCompatActivity {
         radioGroup.check(R.id.radioWorkout);
         NumberPicker minutesPicker = findViewById(R.id.minutesPicker);
         minutesPicker.setMinValue(0);
-        minutesPicker.setMaxValue(59);
+        minutesPicker.setMaxValue(5);
         minutesPicker.setValue(minutesPicker.getMinValue());
         NumberPicker secondsPicker = findViewById(R.id.secondsPicker);
         secondsPicker.setMinValue(0);
-        secondsPicker.setMaxValue(3);
-        secondsPicker.setDisplayedValues(new String[]{"0", "15", "30", "45"});
+        secondsPicker.setMaxValue(secondsPickerValues.length - 1);
+        secondsPicker.setDisplayedValues(secondsPickerValues);
         secondsPicker.setWrapSelectorWheel(true);
         secondsPicker.setValue(secondsPicker.getMinValue());
 
@@ -82,7 +88,12 @@ public class WorkoutSetupActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(WorkoutSetupActivity.this, HiitChronographActivity.class);
-                intent.putExtra("workoutRoutineList", workoutRoutine);
+                intent.putParcelableArrayListExtra("workoutRoutineList", workoutRoutine);
+//                bundle.putParcelableArrayList("workoutRoutineList", workoutRoutine);
+//                intent.putExtras(bundle);
+
+//                intent.putParcelableArrayListExtra("workoutRoutineList", workoutRoutine);
+
                 startActivity(intent);
             }
         });
@@ -92,7 +103,7 @@ public class WorkoutSetupActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 int minutes = minutesPicker.getValue();
-                int seconds = getSecondsValue(secondsPicker.getValue());
+                int seconds = getSecondsValue(secondsPicker.getValue(), secondsPickerValues);
 
                 int duration = minutes * 60 + seconds;
 
@@ -122,17 +133,8 @@ public class WorkoutSetupActivity extends AppCompatActivity {
 
     }
 
-    private int getSecondsValue(int value) {
-        switch(value) {
-            case 1:
-                return 15;
-            case 2:
-                return 30;
-            case 3:
-                return 45;
-            default:
-                return 0;
-        }
+    private int getSecondsValue(int index, String[] values) {
+        return Integer.parseInt(values[index]);
     }
 
     private void toggleWorkoutRelaxRadioGroup(RadioGroup radioGroup) {
