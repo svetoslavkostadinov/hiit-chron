@@ -1,11 +1,9 @@
 package com.skconsultllc.hcr.activities;
 
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
-import android.os.Handler;
-import android.text.SpannableString;
-import android.text.style.RelativeSizeSpan;
+import android.os.CountDownTimer;
+import android.service.autofill.CharSequenceTransformation;
 import android.util.DisplayMetrics;
 import android.widget.TextView;
 
@@ -14,37 +12,64 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.skconsultllc.hcr.R;
 import com.skconsultllc.hcr.models.HiitAction;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Locale;
 
 public class HiitChronographActivity extends AppCompatActivity {
 
+    private TextView clockView;
+    private TextView typeView;
+    private int activityIterations;
+    private int routineIndex;
+    ArrayList<HiitAction> workoutRoutineList;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        routineIndex = 0;
+        activityIterations = activityIterations == 0 ? 0 : 1;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hiit_chronograph);
-        TextView clockView = findViewById(R.id.clockView);
+        clockView = findViewById(R.id.countdownView);
+        typeView = findViewById(R.id.typeView);
         Intent intent = getIntent();
-        ArrayList<HiitAction> workoutRoutineList = intent.getParcelableArrayListExtra("workoutRoutineList");
+        workoutRoutineList = intent.getParcelableArrayListExtra("workoutRoutineList");
         DisplayMetrics displayMetrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
         int screenWidth = displayMetrics.widthPixels;
         float textSize = screenWidth * 0.04f;
         clockView.setTextSize(textSize);
-        final Handler handler = new Handler();
-        handler.post(new Runnable() {
+        if (workoutRoutineList != null && activityIterations ==0) {
+            startCountdownTimer(workoutRoutineList);
+        }
+
+    }
+
+    private void startCountdownTimer(ArrayList<HiitAction> workoutRoutineList) {
+
+        HiitAction routine = workoutRoutineList.get(routineIndex);
+        long duration = routine.getDuration();
+        long millisecondsDuration = duration * 1000L;
+
+        CountDownTimer countDownTimer = new CountDownTimer(millisecondsDuration, 1000) {
             @Override
-            public void run() {
-                Calendar calendar = Calendar.getInstance();
-                SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm:ss.S", Locale.UK);
-                String currentTime = timeFormat.format(calendar.getTime());
-                SpannableString spannableString = new SpannableString(currentTime);
-                spannableString.setSpan(new RelativeSizeSpan(0.5f), currentTime.length() - 2, currentTime.length(), 0);
-                clockView.setText(spannableString);
-                handler.postDelayed(this, 100);
+            public void onTick(long millisUntilFinished) {
+                typeView.setText(routine.getHiitActionType().getType());
+                clockView.setText(String.valueOf(Math.round(millisUntilFinished * 0.001f)));
             }
-        });
+
+            @Override
+            public void onFinish() {
+                if (routineIndex < workoutRoutineList.size() - 1) {
+                    routineIndex++;
+                    startCountdownTimer(workoutRoutineList);
+                } else {
+                    activityIterations = 1;
+                    typeView.setText("ALL DONE!");
+                    clockView.setText("Good Job!");
+                }
+
+            }
+        };
+
+        countDownTimer.start();
     }
 }
