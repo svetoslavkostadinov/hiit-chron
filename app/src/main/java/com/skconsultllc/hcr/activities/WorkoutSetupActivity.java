@@ -7,6 +7,7 @@ import android.os.Parcelable;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.NumberPicker;
 import android.widget.RadioButton;
@@ -68,7 +69,7 @@ public class WorkoutSetupActivity extends AppCompatActivity {
                         .build()
         );
 
-        Button addNewWorkoutButton = findViewById(R.id.addNewWorkoutStageButton);
+        ImageButton addNewWorkoutButton = findViewById(R.id.addNewWorkoutStageButton);
         RadioGroup radioGroup = findViewById(R.id.radioGroup);
         RadioButton relaxRadioButton = findViewById(R.id.radioRelax);
         radioGroup.check(R.id.radioWorkout);
@@ -83,7 +84,7 @@ public class WorkoutSetupActivity extends AppCompatActivity {
         secondsPicker.setWrapSelectorWheel(true);
         secondsPicker.setValue(secondsPicker.getMinValue());
 
-        Button startWorkoutButton = findViewById(R.id.startWorkoutButton);
+        ImageButton startWorkoutButton = findViewById(R.id.startWorkoutButton);
         startWorkoutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

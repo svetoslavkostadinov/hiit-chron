@@ -48,7 +48,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:layout_marginVertical="10dp"
-                    android:text="WORKOUT" />
+                    android:text="@string/workout" />
 
                 <RadioButton
                     android:id="@+id/radioRelax"
@@ -56,7 +56,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:layout_marginVertical="10dp"
-                    android:text="RELAX" />
+                    android:text="@string/relax" />
 
             </RadioGroup>
 
@@ -118,33 +118,33 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:padding="10dp">
+            <ImageButton
+                android:id="@+id/saveNewWorkoutSetButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:src="@android:drawable/ic_menu_save"
+                android:layout_weight="1"
+                style="?android:attr/buttonBarButtonStyle"
+                android:contentDescription="@string/save_your_workout" />
+            <ImageButton
+                android:id="@+id/addNewWorkoutStageButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:src="@android:drawable/ic_menu_add"
+                android:layout_weight="1"
+                android:layout_marginHorizontal="10dp"
+                style="?android:attr/buttonBarButtonStyle"
+                android:contentDescription="@string/add_new_workout_btn" />
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <Button
-                    android:id="@+id/addNewWorkoutStageButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/add_new_workout"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <Button
-                    android:id="@+id/startWorkoutButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/go"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"/>
-
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
+            <ImageButton
+                android:id="@+id/startWorkoutButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:src="@android:drawable/ic_menu_send"
+                android:layout_weight="1"
+                style="?android:attr/buttonBarButtonStyle"
+                android:background="@color/go_green"
+                android:contentDescription="@string/start" />
 
         </LinearLayout>
     </LinearLayout>

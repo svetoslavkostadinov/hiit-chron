@@ -131,34 +131,38 @@
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:layout_gravity="center_horizontal">
 
-            <Button
-                android:id="@+id/saveWorkoutSet"
-                android:layout_width="wrap_content"
+            <ImageButton
+                android:id="@+id/saveNewWorkoutSetButton"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_gravity="start"
-                android:layout_marginHorizontal="15dp"
-                android:text="@string/save_workout_set" />
-
-            <Button
+                android:src="@android:drawable/ic_menu_save"
+                android:layout_weight="1"
+                style="?android:attr/buttonBarButtonStyle"
+                android:contentDescription="@string/save_your_workout" />
+            <ImageButton
                 android:id="@+id/addNewWorkoutStageButton"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_gravity="end"
-                android:layout_marginHorizontal="15dp"
-                android:text="@string/add_new_workout" />
+                android:src="@android:drawable/ic_menu_add"
+                android:layout_weight="1"
+                android:layout_marginHorizontal="10dp"
+                style="?android:attr/buttonBarButtonStyle"
+                android:contentDescription="@string/add_new_workout_btn" />
 
-            <Button
+            <ImageButton
                 android:id="@+id/startWorkoutButton"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_gravity="end"
-                android:layout_marginHorizontal="15dp"
-                android:text="@string/go" />
+                android:src="@android:drawable/ic_menu_send"
+                android:layout_weight="1"
+                style="?android:attr/buttonBarButtonStyle"
+                android:background="@color/go_green"
+                android:contentDescription="@string/start" />
 
         </LinearLayout>
 
