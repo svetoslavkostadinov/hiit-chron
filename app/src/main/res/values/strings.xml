@@ -17,4 +17,6 @@
     <string name="save_your_workout">Save Your Workout</string>
     <string name="add_new_workout_btn">Add New Workout</string>
     <string name="start">Start</string>
+    <string name="workout_radio_btn">WORKOUT</string>
+    <string name="relax_radio_btn">RELAX</string>
 </resources>
